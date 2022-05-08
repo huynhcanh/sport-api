@@ -41,7 +41,7 @@ public class ProductEntity extends BaseEntity{
 	@JoinColumn(name="categoryid")
 	private CategoryEntity category;
 
-	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
 	private List<ProductSizeEntity> productsize;
 
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
