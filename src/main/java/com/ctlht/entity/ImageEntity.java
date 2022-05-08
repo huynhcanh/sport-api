@@ -20,8 +20,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ImageEntity extends BaseEntity{
 	
-	@Column(name="photo")
-	private String photo;
+	@Column(name="image")
+	private String image;
 
 	@ManyToOne
 	@JoinColumn(name="productid")

@@ -18,9 +18,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CategoryEntity extends BaseEntity{
-	
-	@Column(name="name")
-	private String name;
+
+	@Column(name="code")
+	private String code;
+
+	@Column(name="value")
+	private String value;
 	
 	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
 	private List<ProductEntity> products;
