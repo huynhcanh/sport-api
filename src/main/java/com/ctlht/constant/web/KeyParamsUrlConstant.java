@@ -10,4 +10,9 @@ public class KeyParamsUrlConstant {
 
     // product /chi-tiet-san-pham
     public static final String ID_PRODUCT = "id";
+
+
+    //user
+    public static final String ID_USER = "idNguoiDung";
+    public static final String LIMIT_ODER = "soDonHang";
 }

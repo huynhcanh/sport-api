@@ -21,10 +21,9 @@ public class CartApi {
     @Autowired
     CartService cartService;
 
-    @GetMapping("/cart")
-    public List<CartResponse> getListCart(@RequestParam Map<String, Object> params) {
-
-        return null;
+    @GetMapping("/carts/{id}")
+    public List<CartResponse> getCartsByUserId(@PathVariable Long id){
+        return cartService.getCartsByUserId(id);
     }
 
     @PostMapping("/cart")
@@ -37,5 +36,10 @@ public class CartApi {
     public CartResponse updateCart(@RequestBody CartRequest cartRequest) {
         CartResponse cartResponse = cartService.updateCart(cartRequest);
         return cartResponse;
+    }
+
+    @DeleteMapping("/cart/{id}")
+    public void deleteCart(@PathVariable Long id) {
+        cartService.deleteCart(id);
     }
 }

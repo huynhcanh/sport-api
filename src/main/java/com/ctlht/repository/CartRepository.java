@@ -3,6 +3,8 @@ package com.ctlht.repository;
 import com.ctlht.entity.CartEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface CartRepository extends JpaRepository<CartEntity, Long> {
+import java.util.List;
 
+public interface CartRepository extends JpaRepository<CartEntity, Long> {
+    List<CartEntity> findAllByUserId(Long userId);
 }
