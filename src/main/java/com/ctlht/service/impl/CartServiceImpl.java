@@ -7,7 +7,6 @@ import com.ctlht.model.mapper.CartMapper;
 import com.ctlht.model.request.CartRequest;
 import com.ctlht.model.response.CartResponse;
 import com.ctlht.repository.CartRepository;
-import com.ctlht.repository.ProductRepository;
 import com.ctlht.repository.ProductSizeRepository;
 import com.ctlht.repository.UserRepository;
 import com.ctlht.service.CartService;

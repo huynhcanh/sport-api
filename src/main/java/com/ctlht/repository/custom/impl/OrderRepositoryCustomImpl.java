@@ -1,11 +1,8 @@
 package com.ctlht.repository.custom.impl;
 
 import com.ctlht.constant.web.KeyParamsUrlConstant;
-import com.ctlht.constant.web.SystemConstant;
 import com.ctlht.entity.OrderEntity;
-import com.ctlht.entity.ProductEntity;
 import com.ctlht.repository.custom.OrderRepositoryCustom;
-import com.ctlht.repository.custom.ProductRepositoryCustom;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -28,7 +25,19 @@ public class OrderRepositoryCustomImpl implements OrderRepositoryCustom {
 
         StringBuilder JPQL = new StringBuilder("SELECT o FROM OrderEntity o WHERE o.user.id = " + userId);
 
-        return entityManager.createQuery(JPQL.toString()).setFirstResult((page-1)*limit).setMaxResults(limit).getResultList();
+        return entityManager.createQuery(JPQL.toString()).setFirstResult((page - 1) * limit).setMaxResults(limit).getResultList();
+    }
+
+    @Override
+    public List<OrderEntity> getOrdersByCurrentMonth(String month) {
+        StringBuilder JPQL = new StringBuilder("SELECT o FROM OrderEntity o WHERE MONTH(o.createdDate) = " + month);
+        return entityManager.createQuery(JPQL.toString()).getResultList();
+    }
+
+    @Override
+    public List<OrderEntity> countOrdersByDay(String day) {
+        StringBuilder JPQL = new StringBuilder("SELECT o FROM OrderEntity o WHERE DAY(o.createdDate) = " + day);
+        return entityManager.createQuery(JPQL.toString()).getResultList();
     }
 
 }

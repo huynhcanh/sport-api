@@ -1,7 +1,6 @@
 package com.ctlht.model.mapper;
 
 import com.ctlht.entity.CartEntity;
-import com.ctlht.model.request.CartRequest;
 import com.ctlht.model.response.CartResponse;
 import com.ctlht.repository.CartRepository;
 import org.modelmapper.ModelMapper;
@@ -27,10 +26,5 @@ public class CartMapper {
     public CartResponse toResponse(CartEntity cartEntity) {
         CartResponse cartResponse = modelMapper.map(cartEntity, CartResponse.class);
         return cartResponse;
-    }
-
-    public CartEntity toEntity(CartRequest cartRequest)
-    {
-        return null;
     }
 }

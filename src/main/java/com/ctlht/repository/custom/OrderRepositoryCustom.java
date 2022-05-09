@@ -8,4 +8,6 @@ import java.util.Map;
 
 public interface OrderRepositoryCustom {
     List<OrderEntity> getOrdersByFields(Map<String, String> params);
+    List<OrderEntity> getOrdersByCurrentMonth(String month);
+    List<OrderEntity> countOrdersByDay(String day);
 }

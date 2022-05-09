@@ -4,9 +4,9 @@ import com.ctlht.entity.ProductEntity;
 import com.ctlht.entity.ProductSizeEntity;
 import com.ctlht.model.mapper.ProductMapper;
 import com.ctlht.model.mapper.ProductSizeMapper;
+import com.ctlht.model.request.ProductRequest;
 import com.ctlht.model.response.ProductResponse;
 import com.ctlht.model.response.ProductSizeResponse;
-import com.ctlht.model.request.ProductRequest;
 import com.ctlht.repository.ProductRepository;
 import com.ctlht.repository.ProductSizeRepository;
 import com.ctlht.service.ProductService;
@@ -38,7 +38,7 @@ public class ProductServiceImpl implements ProductService {
 
         List<ProductEntity> productEntities = productRepository.getBuildingByFields(params);
 
-        for(ProductEntity productEntity : productEntities){
+        for (ProductEntity productEntity : productEntities) {
             productResponse.add(productMapper.toReponse(productEntity));
         }
         return productResponse;
@@ -55,7 +55,7 @@ public class ProductServiceImpl implements ProductService {
 
         List<ProductEntity> productEntities = productRepository.findTop3ByTop3LatestId();
 
-        for(ProductEntity productEntity : productEntities){
+        for (ProductEntity productEntity : productEntities) {
             productResponse.add(productMapper.toReponse(productEntity));
         }
         return productResponse;
@@ -64,12 +64,12 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductSizeResponse insertOrUpdate(ProductRequest productRequest) {
         ProductSizeEntity productSizeEntity = productSizeMapper.toEntity(productRequest);
-        if(productRequest.getIdProductSize() == null){ // insert
+        if (productRequest.getIdProductSize() == null) { // insert
             ProductEntity productEntity = productSizeEntity.getProduct();
-            productEntity= productRepository.save(productEntity);
+            productEntity = productRepository.save(productEntity);
             productSizeEntity.setProduct(productEntity);
         }
-        productSizeEntity= productSizeRepository.save(productSizeEntity);
+        productSizeEntity = productSizeRepository.save(productSizeEntity);
         return productSizeMapper.toResponse(productSizeEntity);
     }
 

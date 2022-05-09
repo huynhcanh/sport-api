@@ -22,12 +22,12 @@ public class CartApi {
     CartService cartService;
 
     @GetMapping("/carts/{id}")
-    public List<CartResponse> getCartsByUserId(@PathVariable Long id){
+    public List<CartResponse> getCartsByUserId(@PathVariable Long id) {
         return cartService.getCartsByUserId(id);
     }
 
     @PostMapping("/cart")
-    public CartResponse insertCart(@RequestParam Map<String,Object> params) {
+    public CartResponse insertCart(@RequestParam Map<String, Object> params) {
         CartResponse cartResponse = cartService.insertCart(params);
         return cartResponse;
     }

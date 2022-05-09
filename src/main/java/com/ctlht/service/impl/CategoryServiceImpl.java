@@ -26,7 +26,7 @@ public class CategoryServiceImpl implements CategoryService {
         List<CategoryResponse> blogResponses = new ArrayList<>();
 
         List<CategoryEntity> categoryEntities = categoryRepository.findAll();
-        for(CategoryEntity categoryEntity : categoryEntities){
+        for (CategoryEntity categoryEntity : categoryEntities) {
             blogResponses.add(categoryMapper.toReponse(categoryEntity));
         }
         return blogResponses;

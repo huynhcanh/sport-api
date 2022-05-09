@@ -1,9 +1,9 @@
 package com.ctlht.api;
 
 import com.ctlht.constant.web.KeyParamsUrlConstant;
+import com.ctlht.model.request.ProductRequest;
 import com.ctlht.model.response.ProductResponse;
 import com.ctlht.model.response.ProductSizeResponse;
-import com.ctlht.model.request.ProductRequest;
 import com.ctlht.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -49,6 +49,6 @@ public class ProductApi {
     @DeleteMapping("/product/{id}")
     public void deleteProduct(@PathVariable Long id) {
         productService.deleteById(id);
-        System.out.println("xóa "+ id);
+        System.out.println("xóa " + id);
     }
 }
