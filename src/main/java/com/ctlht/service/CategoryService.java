@@ -1,6 +1,6 @@
 package com.ctlht.service;
 
-import com.ctlht.model.reponse.CategoryResponse;
+import com.ctlht.model.response.CategoryResponse;
 
 import java.util.List;
 

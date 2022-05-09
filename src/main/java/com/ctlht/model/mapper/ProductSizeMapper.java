@@ -3,16 +3,15 @@ package com.ctlht.model.mapper;
 import com.ctlht.entity.ImageEntity;
 import com.ctlht.entity.ProductEntity;
 import com.ctlht.entity.ProductSizeEntity;
-import com.ctlht.model.reponse.ProductSizeResponse;
+import com.ctlht.model.response.ProductSizeResponse;
 import com.ctlht.model.request.ProductRequest;
-import com.ctlht.repository.ProductSizeReponsitory;
-import com.ctlht.repository.SizeReponsitory;
-import com.ctlht.repository.CategoryReponsitory;
+import com.ctlht.repository.ProductSizeRepository;
+import com.ctlht.repository.SizeRepository;
+import com.ctlht.repository.CategoryRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,13 +19,13 @@ import java.util.List;
 public class ProductSizeMapper {
 
     @Autowired
-    private CategoryReponsitory categoryReponsitory;
+    private CategoryRepository categoryRepository;
 
     @Autowired
-    private SizeReponsitory sizeReponsitory;
+    private SizeRepository sizeRepository;
 
     @Autowired
-    private ProductSizeReponsitory productSizeReponsitory;
+    private ProductSizeRepository productSizeRepository;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -48,15 +47,15 @@ public class ProductSizeMapper {
                 imagesEntity.add(imageEntity);
             }
             productEntity.setImages(imagesEntity);
-            productEntity.setCategory(categoryReponsitory.findByCode(productRequest.getCategoryCode()));
+            productEntity.setCategory(categoryRepository.findByCode(productRequest.getCategoryCode()));
 
             productSizeEntity.setProduct(productEntity);
-            productSizeEntity.setSize(sizeReponsitory.findByCode(productRequest.getSizeCode()));
+            productSizeEntity.setSize(sizeRepository.findByCode(productRequest.getSizeCode()));
             productSizeEntity.setQuantity(productRequest.getQuantity());
         }
         // update
         else{
-            productSizeEntity = productSizeReponsitory.findById(productRequest.getIdProductSize()).get();
+            productSizeEntity = productSizeRepository.findById(productRequest.getIdProductSize()).get();
 
             ProductEntity productEntity = productSizeEntity.getProduct();
             if(productRequest.getName()!= null){
@@ -80,10 +79,10 @@ public class ProductSizeMapper {
                 productEntity.setImages(imagesEntity);
             }
             if(productRequest.getCategoryCode()!=null){
-                productEntity.setCategory(categoryReponsitory.findByCode(productRequest.getCategoryCode()));
+                productEntity.setCategory(categoryRepository.findByCode(productRequest.getCategoryCode()));
             }
             if(productRequest.getSizeCode()!=null){
-                productSizeEntity.setSize(sizeReponsitory.findByCode(productRequest.getSizeCode()));
+                productSizeEntity.setSize(sizeRepository.findByCode(productRequest.getSizeCode()));
             }
             if(productRequest.getQuantity()!=null){
                 productSizeEntity.setQuantity(productRequest.getQuantity());

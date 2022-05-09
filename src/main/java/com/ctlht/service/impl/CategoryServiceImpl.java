@@ -2,8 +2,8 @@ package com.ctlht.service.impl;
 
 import com.ctlht.entity.CategoryEntity;
 import com.ctlht.model.mapper.CategoryMapper;
-import com.ctlht.model.reponse.CategoryResponse;
-import com.ctlht.repository.CategoryReponsitory;
+import com.ctlht.model.response.CategoryResponse;
+import com.ctlht.repository.CategoryRepository;
 import com.ctlht.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ import java.util.List;
 public class CategoryServiceImpl implements CategoryService {
 
     @Autowired
-    CategoryReponsitory categoryReponsitory;
+    CategoryRepository categoryRepository;
 
     @Autowired
     CategoryMapper categoryMapper;
@@ -25,7 +25,7 @@ public class CategoryServiceImpl implements CategoryService {
 
         List<CategoryResponse> blogResponses = new ArrayList<>();
 
-        List<CategoryEntity> categoryEntities = categoryReponsitory.findAll();
+        List<CategoryEntity> categoryEntities = categoryRepository.findAll();
         for(CategoryEntity categoryEntity : categoryEntities){
             blogResponses.add(categoryMapper.toReponse(categoryEntity));
         }

@@ -3,7 +3,7 @@ package com.ctlht.repository.custom.impl;
 import com.ctlht.constant.web.KeyParamsUrlConstant;
 import com.ctlht.constant.web.SystemConstant;
 import com.ctlht.entity.ProductEntity;
-import com.ctlht.repository.custom.ProductReponsitoryCustom;
+import com.ctlht.repository.custom.ProductRepositoryCustom;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
-public class ProductReponsitoryCustomImpl implements ProductReponsitoryCustom {
+public class ProductRepositoryCustomImpl implements ProductRepositoryCustom {
 
     @PersistenceContext
     private EntityManager entityManager;

@@ -1,6 +1,6 @@
 package com.ctlht.api;
 
-import com.ctlht.model.reponse.CategoryResponse;
+import com.ctlht.model.response.CategoryResponse;
 import com.ctlht.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

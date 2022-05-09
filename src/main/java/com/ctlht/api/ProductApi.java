@@ -1,8 +1,8 @@
 package com.ctlht.api;
 
 import com.ctlht.constant.web.KeyParamsUrlConstant;
-import com.ctlht.model.reponse.ProductResponse;
-import com.ctlht.model.reponse.ProductSizeResponse;
+import com.ctlht.model.response.ProductResponse;
+import com.ctlht.model.response.ProductSizeResponse;
 import com.ctlht.model.request.ProductRequest;
 import com.ctlht.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;

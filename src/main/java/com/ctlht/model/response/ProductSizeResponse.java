@@ -1,4 +1,4 @@
-package com.ctlht.model.reponse;
+package com.ctlht.model.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

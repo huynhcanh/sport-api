@@ -1,7 +1,7 @@
 package com.ctlht.service;
 
-import com.ctlht.model.reponse.ProductResponse;
-import com.ctlht.model.reponse.ProductSizeResponse;
+import com.ctlht.model.response.ProductResponse;
+import com.ctlht.model.response.ProductSizeResponse;
 import com.ctlht.model.request.ProductRequest;
 
 import java.util.List;
