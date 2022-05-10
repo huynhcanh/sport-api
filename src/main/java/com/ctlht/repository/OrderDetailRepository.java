@@ -3,6 +3,8 @@ package com.ctlht.repository;
 import com.ctlht.entity.OrderDetailEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface OrderDetailRepository extends JpaRepository<OrderDetailEntity, Long> {
+import java.util.List;
 
+public interface OrderDetailRepository extends JpaRepository<OrderDetailEntity, Long> {
+    List<OrderDetailEntity> findAllByOrderId(Long orderId);
 }

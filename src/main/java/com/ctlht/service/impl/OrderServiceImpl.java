@@ -10,6 +10,9 @@ import com.ctlht.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -51,13 +54,14 @@ public class OrderServiceImpl implements OrderService {
         OrderEntity orderEntity = new OrderEntity();
         String adddress = (String) params.getOrDefault("adddress", null);
         orderEntity.setAdddress(adddress);
+        orderEntity.setCreatedDate(Date.from(LocalDate.now().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
 
         //user have carts
         Long userId = Long.valueOf(params.getOrDefault("userId", null).toString());
         UserEntity userEntity = userRepository.findById(userId).get();
         orderEntity.setUser(userEntity);
 
-        //accept carts -> order details
+        //accept carts -> order details -> delete carts
         List<CartEntity> cartEntities = cartRepository.findAllByUserId(userId);
         Float totalMoney = 0F;
         orderRepository.save(orderEntity);
@@ -71,6 +75,7 @@ public class OrderServiceImpl implements OrderService {
             orderDetailEntity.setTotalMoney(cartEntity.getTotalMoney());
             totalMoney = totalMoney + cartEntity.getTotalMoney();
             orderDetailRepository.save(orderDetailEntity);
+            cartRepository.deleteById(cartEntity.getId());
         }
         orderEntity.setTotalMoney(totalMoney);
         return orderMapper.toReponse(orderRepository.save(orderEntity));
