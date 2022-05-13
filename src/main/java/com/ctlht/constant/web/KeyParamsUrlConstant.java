@@ -12,7 +12,10 @@ public class KeyParamsUrlConstant {
     public static final String ID_PRODUCT = "id";
 
 
-    //user
+    //order
     public static final String ID_USER = "idNguoiDung";
     public static final String LIMIT_ODER = "soDonHang";
+
+    //user
+    public static final String LIMIT_USER = "soNguoiDung";
 }

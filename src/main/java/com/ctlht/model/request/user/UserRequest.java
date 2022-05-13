@@ -1,21 +1,17 @@
-package com.ctlht.model.response;
-
+package com.ctlht.model.request.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserResponse {
+public class UserRequest {
+    private Long id;
+    private String email;
+    private String password;
     private String name;
     private String phone;
-
-    private String email;
-    private Date createdDate;
-
-    RoleResponse role;
+    private String roleCode;
 }

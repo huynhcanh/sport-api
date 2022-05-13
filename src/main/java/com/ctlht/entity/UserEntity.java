@@ -30,6 +30,9 @@ public class UserEntity extends BaseEntity{
 	@Column(name="phone")
 	private String phone;
 
+	@Column(name="image")
+	private String image;
+
 	@Column(name="email", unique= true)
 	private String email;
 	
