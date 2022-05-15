@@ -39,7 +39,7 @@ public class CartServiceImpl implements CartService {
         Long productId = Long.valueOf(params.getOrDefault("productId", null).toString());
         String sizeCode = (String) params.getOrDefault("sizeCode", null);
         ProductSizeEntity productSizeEntity = productSizeRepository.findByProductIdAndSizeCode(productId, sizeCode);
-
+        System.out.println(productSizeEntity.getProduct().getId());
         //user
         Long userId = Long.valueOf(params.getOrDefault("userId", null).toString());
         UserEntity userEntity = userRepository.findById(userId).get();
@@ -61,6 +61,8 @@ public class CartServiceImpl implements CartService {
         CartEntity cartEntity = cartRepository.findById(cartRequest.getId()).get();
         if (cartRequest.getQuantity() != null) {
             cartEntity.setQuantity(cartRequest.getQuantity());
+            ProductSizeEntity productSizeEntity = productSizeRepository.findByProductIdAndSizeCode(cartRequest.getProductId(), cartRequest.getSizeCode());
+            cartEntity.setTotalMoney(cartRequest.getQuantity() * productSizeEntity.getProduct().getSalePrice());
         }
         if (cartRequest.getSizeCode() != null) {
             ProductSizeEntity productSizeEntity = productSizeRepository.findByProductIdAndSizeCode(cartEntity.getProductsize().getProduct().getId()

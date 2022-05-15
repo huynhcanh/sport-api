@@ -11,4 +11,5 @@ public class CartRequest {
     private Long id;
     private Integer quantity;
     private String sizeCode;
+    private Long productId;
 }

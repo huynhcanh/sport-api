@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CartResponse {
+    private Long id;
     private Integer quantity;
     private Float totalMoney;
     private ProductSizeResponse productsize;
