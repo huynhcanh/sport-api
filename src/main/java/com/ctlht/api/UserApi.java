@@ -36,7 +36,6 @@ public class UserApi {
         return service.findUserByEmail(email);
     }
 
-
     // PAGINATE  OK 2
     @GetMapping("/users")
     public List<UserResponse> getUsersByPage(@RequestParam(required = false) Map<String, String> params) {

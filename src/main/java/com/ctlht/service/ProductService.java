@@ -21,4 +21,6 @@ public interface ProductService {
     ProductSizeResponse insertOrUpdate(ProductSizeRequest productSizeRequest);
 
     void deleteById(Long id);
+
+    long count();
 }
