@@ -47,10 +47,9 @@ public class ProductSizeServiceImpl implements ProductSizeService {
     @Override
     public void deleteProductSizes(long[] ids) {
         for (long id: ids) {
-            productSizeRepository.deleteById(id);
-
             ProductSizeEntity productSizeEntity = productSizeRepository.findById(id).get();
             Long productId = productSizeEntity.getProduct().getId();
+            productSizeRepository.deleteById(id);
             if(productSizeRepository.findByProductId(productId)==null){
                 productReponsitory.deleteById(productId);
             }
