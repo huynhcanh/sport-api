@@ -1,7 +1,6 @@
 package com.ctlht.service.impl;
 
 
-import com.ctlht.entity.ProductEntity;
 import com.ctlht.entity.ProductSizeEntity;
 import com.ctlht.model.mapper.ProductSizeMapper;
 import com.ctlht.model.request.ProductSizeRequest;
@@ -37,7 +36,7 @@ public class ProductSizeServiceImpl implements ProductSizeService {
         Pageable pageable = PageRequest.of(page - 1, limit);
         List<ProductSizeEntity> productSizeEntities = productSizeRepository.findAll(pageable).getContent();
         List<ProductSizeResponse> productSizeResponses = new ArrayList<>();
-        for(ProductSizeEntity productSizeEntity: productSizeEntities){
+        for (ProductSizeEntity productSizeEntity : productSizeEntities) {
             productSizeResponses.add(productSizeMapper.toResponse(productSizeEntity));
         }
         return productSizeResponses;
@@ -46,11 +45,11 @@ public class ProductSizeServiceImpl implements ProductSizeService {
 
     @Override
     public void deleteProductSizes(long[] ids) {
-        for (long id: ids) {
+        for (long id : ids) {
             ProductSizeEntity productSizeEntity = productSizeRepository.findById(id).get();
             Long productId = productSizeEntity.getProduct().getId();
             productSizeRepository.deleteById(id);
-            if(productSizeRepository.findByProductId(productId)==null){
+            if (productSizeRepository.findByProductId(productId) == null) {
                 productReponsitory.deleteById(productId);
             }
         }

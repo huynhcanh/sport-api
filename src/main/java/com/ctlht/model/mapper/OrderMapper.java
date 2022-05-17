@@ -1,6 +1,5 @@
 package com.ctlht.model.mapper;
 
-import com.ctlht.entity.CartEntity;
 import com.ctlht.entity.OrderEntity;
 import com.ctlht.model.response.OrderResponse;
 import org.modelmapper.ModelMapper;

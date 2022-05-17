@@ -26,7 +26,7 @@ public class SizeServiceImpl implements SizeService {
         List<SizeResponse> sizeResponses = new ArrayList<>();
 
         List<SizeEntity> sizeEntities = sizeReponsitory.findAll();
-        for(SizeEntity sizeEntity : sizeEntities){
+        for (SizeEntity sizeEntity : sizeEntities) {
             sizeResponses.add(sizeMapper.toReponse(sizeEntity));
         }
         return sizeResponses;

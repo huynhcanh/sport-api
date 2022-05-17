@@ -7,5 +7,6 @@ import java.util.Map;
 
 public interface ProductRepositoryCustom {
     List<ProductEntity> getBuildingByFields(Map<String, String> params);
+
     List<ProductEntity> findTop3ByTop3LatestId();
 }

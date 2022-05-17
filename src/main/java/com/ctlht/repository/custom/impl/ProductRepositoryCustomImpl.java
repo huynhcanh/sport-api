@@ -22,17 +22,17 @@ public class ProductRepositoryCustomImpl implements ProductRepositoryCustom {
 
         Integer page = Integer.parseInt(params.get(KeyParamsUrlConstant.PAGE));
         Integer limit = Integer.parseInt(params.get(KeyParamsUrlConstant.LIMIT));
-        String categoryCode = (String)params.get(KeyParamsUrlConstant.CODE_CATEGORY);
-        String sortByPrice = (String)params.get(KeyParamsUrlConstant.SORT_BY_PRICE);
+        String categoryCode = (String) params.get(KeyParamsUrlConstant.CODE_CATEGORY);
+        String sortByPrice = (String) params.get(KeyParamsUrlConstant.SORT_BY_PRICE);
 
         StringBuilder JPQL = new StringBuilder("SELECT p FROM ProductEntity p " + SystemConstant.WHERE_ONE_EQUAL_ONE);
-        if(categoryCode != null){
+        if (categoryCode != null) {
             JPQL.append(" AND p.category.code = '" + categoryCode + "'");
         }
-        if(sortByPrice != null){
+        if (sortByPrice != null) {
             JPQL.append(" ORDER BY p.salePrice " + sortByPrice);
         }
-        return entityManager.createQuery(JPQL.toString()).setFirstResult((page-1)*limit).setMaxResults(limit).getResultList();
+        return entityManager.createQuery(JPQL.toString()).setFirstResult((page - 1) * limit).setMaxResults(limit).getResultList();
     }
 
     @Override

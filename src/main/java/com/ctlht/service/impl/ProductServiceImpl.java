@@ -4,7 +4,6 @@ import com.ctlht.entity.ProductEntity;
 import com.ctlht.entity.ProductSizeEntity;
 import com.ctlht.model.mapper.ProductMapper;
 import com.ctlht.model.mapper.ProductSizeMapper;
-import com.ctlht.model.request.ProductRequest;
 import com.ctlht.model.request.ProductSizeRequest;
 import com.ctlht.model.response.ProductResponse;
 import com.ctlht.model.response.ProductSizeResponse;

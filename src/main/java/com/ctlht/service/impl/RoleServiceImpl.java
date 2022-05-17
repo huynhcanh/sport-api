@@ -26,7 +26,7 @@ public class RoleServiceImpl implements RoleService {
         List<RoleResponse> roleResponses = new ArrayList<>();
 
         List<RoleEntity> roleEntities = roleRepository.findAll();
-        for(RoleEntity roleEntity : roleEntities){
+        for (RoleEntity roleEntity : roleEntities) {
             roleResponses.add(roleMapper.toResponse(roleEntity));
         }
         return roleResponses;

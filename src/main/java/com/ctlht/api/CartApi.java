@@ -1,12 +1,8 @@
 package com.ctlht.api;
 
 
-import com.ctlht.model.mapper.ProductMapper;
-import com.ctlht.model.mapper.ProductSizeMapper;
 import com.ctlht.model.request.CartRequest;
 import com.ctlht.model.response.CartResponse;
-import com.ctlht.model.response.ProductSizeResponse;
-import com.ctlht.repository.ProductRepository;
 import com.ctlht.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

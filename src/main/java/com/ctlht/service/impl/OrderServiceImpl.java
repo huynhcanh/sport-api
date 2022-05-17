@@ -1,7 +1,9 @@
 package com.ctlht.service.impl;
 
 import com.ctlht.entity.*;
+import com.ctlht.enums.MonthEnums;
 import com.ctlht.model.mapper.OrderMapper;
+import com.ctlht.model.response.OrderResponse;
 import com.ctlht.model.response.TurnoverResponse;
 import com.ctlht.repository.*;
 import com.ctlht.service.OrderService;
@@ -63,19 +65,25 @@ public class OrderServiceImpl implements OrderService {
         List<CartEntity> cartEntities = cartRepository.findAllByUserId(userId);
         Float totalMoney = 0F;
         orderRepository.save(orderEntity);
+
+        for(CartEntity cartEntity: cartEntities){
+            ProductSizeEntity productSizeEntity = productSizeRepository.findById(cartEntity.getProductsize().getId()).get();
+            Integer quantityElse = productSizeEntity.getQuantity() - cartEntity.getQuantity();
+            if(quantityElse<0){
+                orderRepository.deleteById(orderEntity.getId());
+                return null;
+            }
+        }
+
         for (CartEntity cartEntity : cartEntities) {
             ProductSizeEntity productSizeEntity = productSizeRepository.findById(cartEntity.getProductsize().getId()).get();
             OrderDetailEntity orderDetailEntity = new OrderDetailEntity();
             orderDetailEntity.setOrder(orderEntity); //id
             orderDetailEntity.setProductsize(cartEntity.getProductsize());
             orderDetailEntity.setQuantity(cartEntity.getQuantity());
-            Integer quantityElse = productSizeEntity.getQuantity() - cartEntity.getQuantity();
-            productSizeEntity.setQuantity(quantityElse);
-            if (quantityElse >= 0) {
-                productSizeRepository.save(productSizeEntity);
-            } else {
-                return null;
-            }
+            productSizeEntity.setQuantity(productSizeEntity.getQuantity() - cartEntity.getQuantity());
+            productSizeRepository.save(productSizeEntity);
+
             orderDetailEntity.setTotalMoney(cartEntity.getTotalMoney());
             totalMoney = totalMoney + cartEntity.getTotalMoney();
             orderDetailRepository.save(orderDetailEntity);

@@ -1,10 +1,8 @@
 package com.ctlht.service.impl;
 
 import com.ctlht.entity.OrderDetailEntity;
-import com.ctlht.entity.OrderEntity;
 import com.ctlht.model.mapper.OrderDetailMapper;
 import com.ctlht.model.response.OrderDetailResponse;
-import com.ctlht.model.response.OrderResponse;
 import com.ctlht.repository.OrderDetailRepository;
 import com.ctlht.service.OrderDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
