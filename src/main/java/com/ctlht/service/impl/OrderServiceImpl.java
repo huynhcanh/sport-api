@@ -1,9 +1,7 @@
 package com.ctlht.service.impl;
 
 import com.ctlht.entity.*;
-import com.ctlht.enums.MonthEnums;
 import com.ctlht.model.mapper.OrderMapper;
-import com.ctlht.model.response.OrderResponse;
 import com.ctlht.model.response.TurnoverResponse;
 import com.ctlht.repository.*;
 import com.ctlht.service.OrderService;
@@ -73,9 +71,9 @@ public class OrderServiceImpl implements OrderService {
             orderDetailEntity.setQuantity(cartEntity.getQuantity());
             Integer quantityElse = productSizeEntity.getQuantity() - cartEntity.getQuantity();
             productSizeEntity.setQuantity(quantityElse);
-            if(quantityElse >= 0){
+            if (quantityElse >= 0) {
                 productSizeRepository.save(productSizeEntity);
-            }else{
+            } else {
                 return null;
             }
             orderDetailEntity.setTotalMoney(cartEntity.getTotalMoney());
