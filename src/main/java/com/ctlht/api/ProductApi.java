@@ -52,4 +52,9 @@ public class ProductApi {
         productService.deleteById(id);
         System.out.println("xóa " + id);
     }
+
+    @GetMapping("/product/count")
+    public long count() {
+        return productService.count();
+    }
 }

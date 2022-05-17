@@ -1,6 +1,7 @@
 package com.ctlht.service.impl;
 
 
+import com.ctlht.entity.ProductEntity;
 import com.ctlht.entity.ProductSizeEntity;
 import com.ctlht.model.mapper.ProductSizeMapper;
 import com.ctlht.model.request.ProductSizeRequest;
@@ -47,6 +48,12 @@ public class ProductSizeServiceImpl implements ProductSizeService {
     public void deleteProductSizes(long[] ids) {
         for (long id: ids) {
             productSizeRepository.deleteById(id);
+
+            ProductSizeEntity productSizeEntity = productSizeRepository.findById(id).get();
+            Long productId = productSizeEntity.getProduct().getId();
+            if(productSizeRepository.findByProductId(productId)==null){
+                productReponsitory.deleteById(productId);
+            }
         }
     }
 

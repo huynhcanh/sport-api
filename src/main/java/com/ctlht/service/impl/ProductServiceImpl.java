@@ -78,4 +78,9 @@ public class ProductServiceImpl implements ProductService {
     public void deleteById(Long id) {
         productRepository.deleteById(id);
     }
+
+    @Override
+    public long count() {
+        return productRepository.count();
+    }
 }
