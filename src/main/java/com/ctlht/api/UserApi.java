@@ -49,4 +49,9 @@ public class UserApi {
     public List<UserResponse> getUsersByPage(@RequestParam(required = false) Map<String, String> params) {
         return service.findUsersByParams(params);
     }
+
+    @GetMapping("/user/count")
+    public long getTotalItem() {
+        return service.getTotalItem();
+    }
 }

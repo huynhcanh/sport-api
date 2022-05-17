@@ -19,6 +19,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import static com.ctlht.constant.web.RoleConstant.ADMIN;
 import static com.ctlht.constant.web.RoleConstant.CUSTOMER;
 
 @Service
@@ -51,7 +52,10 @@ public class UserServiceImpl implements UserService {
     {
         UserEntity userEntity = userRepository.findByEmail(userRequest.getEmail());
         if(userEntity != null){// tồn tại email trong db
-            if(!userEntity.getPassword().equals(userRequest.getPassword())) return null;
+            if(userEntity.getRole().getCode().equals(ADMIN)){
+                if( !userEntity.getPassword().equals(userRequest.getPassword())) return null;
+            }
+            else return null;
         } else return null;
         return userMapper.toResponse(userEntity);
     }
@@ -90,6 +94,11 @@ public class UserServiceImpl implements UserService {
             userResponses.add(userMapper.toResponse(userEntity));
         }
         return userResponses;
+    }
+
+    @Override
+    public long getTotalItem() {
+        return userRepository.count();
     }
 
     @Override

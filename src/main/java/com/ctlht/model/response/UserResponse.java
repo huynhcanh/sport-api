@@ -12,6 +12,8 @@ import java.util.Date;
 public class UserResponse {
     private Long id;
     private String name;
+    private String password;
+    private String image;
     private String phone;
     private String email;
     private Date createdDate;

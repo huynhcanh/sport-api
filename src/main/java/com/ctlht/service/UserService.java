@@ -14,5 +14,5 @@ public interface UserService {
     void deleteById(Long id);
     UserResponse update(UserRequest userRequest);
     List<UserResponse> findUsersByParams(Map<String, String> param);
-//    int totalUser();
+    long getTotalItem();
 }

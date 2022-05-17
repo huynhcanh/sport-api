@@ -15,6 +15,7 @@ public class ProductResponse {
     private List<ImageResponse> images;
     private Float discount;
     private Float unitPrice;
+    private Float salePrice;
     private CategoryResponse category;
     private String description;
 
