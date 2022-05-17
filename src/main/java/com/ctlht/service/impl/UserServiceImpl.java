@@ -52,28 +52,11 @@ public class UserServiceImpl implements UserService {
     {
         UserEntity userEntity = userRepository.findByEmail(userRequest.getEmail());
         if(userEntity != null){// tồn tại email trong db
-            if(userEntity.getRole().getCode().equals(ADMIN)){
-                if( !userEntity.getPassword().equals(userRequest.getPassword())) return null;
-            }
-            else return null;
+            if( !userEntity.getPassword().equals(userRequest.getPassword())) return null;
         } else return null;
         return userMapper.toResponse(userEntity);
     }
 
-
-//    // LIST USERS
-//    @Override
-//    public List<UserResponse> getUsers()
-//    {
-//        List<UserResponse> userResponses = new ArrayList<>();
-//        List<UserEntity> userEntities = userRepository.findAll();
-//        for(UserEntity userEntity: userEntities)
-//        {
-//            userResponses.add(userMapper.toResponse(userEntity));
-//        }
-//        return userResponses;
-//    }
-//
 
     @Override
     public UserResponse findUserByEmail(String email)
@@ -81,10 +64,6 @@ public class UserServiceImpl implements UserService {
         return userMapper.toResponse(userRepository.findByEmail(email));
     }
 
-    @Override
-    public UserResponse update(UserRequest userRequest){
-        return userMapper.toResponse(userRepository.save(userMapper.toEntity(userRequest)));
-    }
 
     @Override
     public List<UserResponse> findUsersByParams(Map<String, String> param) {
@@ -97,13 +76,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public long getTotalItem() {
-        return userRepository.count();
+    public void deleteUsers(long[] ids) {
+        for (long id: ids) {
+            userRepository.deleteById(id);
+        }
     }
 
     @Override
-    public void deleteById(Long id)
-    {
-       userRepository.deleteById(id);
+    public UserResponse updateOrAdd(UserRequest userRequest) {
+        UserEntity userEntity = userRepository.save(userMapper.toEntity(userRequest));
+        return userMapper.toResponse(userEntity);
+    }
+
+    @Override
+    public long getTotalItem() {
+        return userRepository.count();
     }
 }

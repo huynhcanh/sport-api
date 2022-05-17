@@ -3,10 +3,12 @@ package com.ctlht.api;
 import com.ctlht.model.request.user.UserRequest;
 import com.ctlht.model.response.UserResponse;
 import com.ctlht.service.UserService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Map;
@@ -34,15 +36,6 @@ public class UserApi {
         return service.findUserByEmail(email);
     }
 
-    @PutMapping("/user")
-    public UserResponse updateUser(@RequestBody UserRequest userRequest) {
-        return service.update(userRequest);
-    }
-
-    @DeleteMapping("/user/{id}")
-    public void deleteUserById(@PathVariable Long id) {
-        service.deleteById(id);
-    }
 
     // PAGINATE  OK 2
     @GetMapping("/users")
@@ -53,5 +46,27 @@ public class UserApi {
     @GetMapping("/user/count")
     public long getTotalItem() {
         return service.getTotalItem();
+    }
+
+    @DeleteMapping("/users")
+    public void deleteNew(@RequestBody long[] ids) {
+        service.deleteUsers(ids);
+    }
+
+    @PutMapping("/user")
+    public UserResponse updateUser(@RequestBody UserRequest userRequest) {
+        return service.updateOrAdd(userRequest);
+    }
+
+    @PostMapping(value="/user")
+    public UserResponse addUser(@RequestParam("userRequest") String userRequestJsonString,@RequestParam("image") MultipartFile file) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        UserRequest userRequest =null;
+        try{
+            userRequest = objectMapper.readValue(userRequestJsonString, UserRequest.class);
+            userRequest.setImage(file);
+        }
+        catch (Exception e){ e.printStackTrace(); }
+        return service.updateOrAdd(userRequest);
     }
 }

@@ -47,8 +47,11 @@ public class ProductSizeMapper {
             productSizeEntity =  new ProductSizeEntity();
             ProductEntity productEntity = new ProductEntity();
             productEntity.setName(productSizeRequest.getName());
-            productEntity.setUnitPrice(productSizeRequest.getUnitPrice());
+            Float unitPrice = productSizeRequest.getUnitPrice();
+            productEntity.setUnitPrice(unitPrice);
+            Float discount = productSizeRequest.getDiscount();
             productEntity.setDiscount(productSizeRequest.getDiscount());
+            productEntity.setSalePrice(unitPrice*(100-discount)/100);
             productEntity.setDescription(productSizeRequest.getDescription());
 
 
@@ -78,8 +81,11 @@ public class ProductSizeMapper {
             productSizeEntity = productSizeRepository.findById(productSizeRequest.getId()).get();
             ProductEntity productEntity = productSizeEntity.getProduct();
             productEntity.setName(productSizeRequest.getName());
-            productEntity.setUnitPrice(productSizeRequest.getUnitPrice());
+            Float unitPrice = productSizeRequest.getUnitPrice();
+            productEntity.setUnitPrice(unitPrice);
+            Float discount = productSizeRequest.getDiscount();
             productEntity.setDiscount(productSizeRequest.getDiscount());
+            productEntity.setSalePrice(unitPrice*(100-discount)/100);
             productEntity.setDescription(productSizeRequest.getDescription());
             productEntity.setCategory(categoryRepository.findByCode(productSizeRequest.getCategoryCode()));
             productSizeEntity.setSize(sizeRepository.findByCode(productSizeRequest.getSizeCode()));

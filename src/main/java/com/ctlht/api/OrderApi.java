@@ -38,5 +38,10 @@ public class OrderApi {
         return orderService.countOrdersByDay(day);
     }
 
+    @GetMapping("/orders/count")
+    public long count() {
+        return orderService.count();
+    }
+
 }
 

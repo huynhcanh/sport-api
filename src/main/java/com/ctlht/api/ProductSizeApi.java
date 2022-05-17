@@ -27,6 +27,11 @@ public class ProductSizeApi {
         return productSizeService.productsizesByParams(params);
     }
 
+    @GetMapping("/productsize/count")
+    public long count() {
+        return productSizeService.count();
+    }
+
     @PostMapping("/productsize")
     public ProductSizeResponse insertProductSize(@RequestParam("productSizeRequest") String productSizeRequestJsonString,
                                                  @RequestParam("images") MultipartFile[] images) {

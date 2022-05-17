@@ -11,8 +11,8 @@ public interface UserService {
     UserResponse register(UserRequest userRequest);
     UserResponse findUserByEmail(String email);
     UserResponse login(UserRequest userRequest);
-    void deleteById(Long id);
-    UserResponse update(UserRequest userRequest);
     List<UserResponse> findUsersByParams(Map<String, String> param);
+    void deleteUsers(long[] ids);
+    UserResponse updateOrAdd(UserRequest userRequest);
     long getTotalItem();
 }
