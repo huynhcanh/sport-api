@@ -89,12 +89,7 @@ public class OrderServiceImpl implements OrderService {
         for (OrderEntity item : orderEntities) {
             totalMoney += item.getTotalMoney();
         }
-        for(MonthEnums m : MonthEnums.values()) {
-            if(m.getValue().equals(month)) {
-                turnoverResponse.setMonth("Turnover in " + m);
-                break;
-            }
-        }
+        turnoverResponse.setMonth(month);
         turnoverResponse.setTotalMoneyOfMonth(totalMoney);
         return turnoverResponse;
     }
@@ -102,5 +97,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public int countOrdersByDay(String day) {
         return orderRepository.countOrdersByDay(day).size();
+    }
+
+    @Override
+    public long count() {
+        return orderRepository.count();
     }
 }

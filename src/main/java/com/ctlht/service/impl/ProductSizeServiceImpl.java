@@ -42,10 +42,6 @@ public class ProductSizeServiceImpl implements ProductSizeService {
         return productSizeResponses;
     }
 
-    @Override
-    public long getTotalItem() {
-        return productSizeRepository.count();
-    }
 
     @Override
     public void deleteProductSizes(long[] ids) {
@@ -61,5 +57,10 @@ public class ProductSizeServiceImpl implements ProductSizeService {
             productSizeEntity.setProduct(productReponsitory.save(productSizeEntity.getProduct()));
         }
         return productSizeMapper.toResponse(productSizeRepository.save(productSizeEntity));
+    }
+
+    @Override
+    public long count() {
+        return productSizeRepository.count();
     }
 }

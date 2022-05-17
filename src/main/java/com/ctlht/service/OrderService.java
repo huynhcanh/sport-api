@@ -14,4 +14,6 @@ public interface OrderService {
     TurnoverResponse getOrdersTurnOverByCurrentMonth(String month);
 
     int countOrdersByDay(String day);
+
+    long count();
 }

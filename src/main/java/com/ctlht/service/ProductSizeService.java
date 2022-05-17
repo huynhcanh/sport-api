@@ -9,7 +9,8 @@ import java.util.Map;
 
 public interface  ProductSizeService {
     List<ProductSizeResponse> productsizesByParams(@RequestParam(required = false) Map<String, String> params);
-    long getTotalItem();
     void deleteProductSizes(long[] ids);
     ProductSizeResponse insertOrUpdate(ProductSizeRequest productSizeRequest);
+
+    long count();
 }

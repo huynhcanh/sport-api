@@ -3,6 +3,7 @@ package com.ctlht.model.request.user;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 @Data
 @AllArgsConstructor
@@ -14,4 +15,5 @@ public class UserRequest {
     private String name;
     private String phone;
     private String roleCode;
+    private MultipartFile image;
 }
