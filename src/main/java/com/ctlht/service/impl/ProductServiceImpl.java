@@ -5,6 +5,7 @@ import com.ctlht.entity.ProductSizeEntity;
 import com.ctlht.model.mapper.ProductMapper;
 import com.ctlht.model.mapper.ProductSizeMapper;
 import com.ctlht.model.request.ProductRequest;
+import com.ctlht.model.request.ProductSizeRequest;
 import com.ctlht.model.response.ProductResponse;
 import com.ctlht.model.response.ProductSizeResponse;
 import com.ctlht.repository.ProductRepository;
@@ -62,9 +63,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductSizeResponse insertOrUpdate(ProductRequest productRequest) {
-        ProductSizeEntity productSizeEntity = productSizeMapper.toEntity(productRequest);
-        if (productRequest.getIdProductSize() == null) { // insert
+    public ProductSizeResponse insertOrUpdate(ProductSizeRequest productSizeRequest) {
+        ProductSizeEntity productSizeEntity = productSizeMapper.toEntity(productSizeRequest);
+        if (productSizeRequest.getId() == null) { // insert
             ProductEntity productEntity = productSizeEntity.getProduct();
             productEntity = productRepository.save(productEntity);
             productSizeEntity.setProduct(productEntity);

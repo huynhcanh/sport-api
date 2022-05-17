@@ -1,6 +1,7 @@
 package com.ctlht.service;
 
 import com.ctlht.model.request.ProductRequest;
+import com.ctlht.model.request.ProductSizeRequest;
 import com.ctlht.model.response.ProductResponse;
 import com.ctlht.model.response.ProductSizeResponse;
 
@@ -17,7 +18,7 @@ public interface ProductService {
     List<ProductResponse> findTop3ByTop3LatestId();
 
     // admin
-    ProductSizeResponse insertOrUpdate(ProductRequest productRequest);
+    ProductSizeResponse insertOrUpdate(ProductSizeRequest productSizeRequest);
 
     void deleteById(Long id);
 }
