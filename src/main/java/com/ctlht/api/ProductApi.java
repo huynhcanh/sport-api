@@ -2,6 +2,7 @@ package com.ctlht.api;
 
 import com.ctlht.constant.web.KeyParamsUrlConstant;
 import com.ctlht.model.request.ProductRequest;
+import com.ctlht.model.request.ProductSizeRequest;
 import com.ctlht.model.response.ProductResponse;
 import com.ctlht.model.response.ProductSizeResponse;
 import com.ctlht.service.ProductService;
@@ -37,13 +38,13 @@ public class ProductApi {
     }
 
     @PostMapping("/product")
-    public ProductSizeResponse insertProduct(@RequestBody ProductRequest productRequest) {
-        return productService.insertOrUpdate(productRequest);
+    public ProductSizeResponse insertProduct(@RequestBody ProductSizeRequest productSizeRequest) {
+        return productService.insertOrUpdate(productSizeRequest);
     }
 
     @PutMapping("/product")
-    public ProductSizeResponse updateProduct(@RequestBody ProductRequest productRequest) {
-        return productService.insertOrUpdate(productRequest);
+    public ProductSizeResponse updateProduct(@RequestBody ProductSizeRequest productSizeRequest) {
+        return productService.insertOrUpdate(productSizeRequest);
     }
 
     @DeleteMapping("/product/{id}")
