@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +45,7 @@ public class ProductSizeServiceImpl implements ProductSizeService {
 
 
     @Override
+    @Transactional
     public void deleteProductSizes(long[] ids) {
         for (long id : ids) {
             ProductSizeEntity productSizeEntity = productSizeRepository.findById(id).get();
@@ -56,6 +58,7 @@ public class ProductSizeServiceImpl implements ProductSizeService {
     }
 
     @Override
+    @Transactional
     public ProductSizeResponse insertOrUpdate(ProductSizeRequest productSizeRequest) {
         ProductSizeEntity productSizeEntity = productSizeMapper.toEntity(productSizeRequest);
         if (productSizeRequest.getId() == null) { // insert

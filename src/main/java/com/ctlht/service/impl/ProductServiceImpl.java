@@ -12,6 +12,7 @@ import com.ctlht.repository.ProductSizeRepository;
 import com.ctlht.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,6 +63,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional
     public ProductSizeResponse insertOrUpdate(ProductSizeRequest productSizeRequest) {
         ProductSizeEntity productSizeEntity = productSizeMapper.toEntity(productSizeRequest);
         if (productSizeRequest.getId() == null) { // insert
@@ -74,6 +76,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional
     public void deleteById(Long id) {
         productRepository.deleteById(id);
     }

@@ -9,6 +9,7 @@ import com.ctlht.repository.*;
 import com.ctlht.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -50,6 +51,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    @Transactional
     public OrderResponse insertOrderToAllCartByUser(Map<String, Object> params) {
         OrderEntity orderEntity = new OrderEntity();
         String adddress = (String) params.getOrDefault("adddress", null);

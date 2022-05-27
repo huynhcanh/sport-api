@@ -12,6 +12,7 @@ import com.ctlht.repository.UserRepository;
 import com.ctlht.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,7 @@ public class CartServiceImpl implements CartService {
     CartMapper cartMapper;
 
     @Override
+    @Transactional
     public CartResponse insertCart(Map<String, Object> params) {
         CartEntity cartEntity = new CartEntity();
         //protduct size
@@ -57,6 +59,7 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
+    @Transactional
     public CartResponse updateCart(CartRequest cartRequest) {
         CartEntity cartEntity = cartRepository.findById(cartRequest.getId()).get();
         if (cartRequest.getQuantity() != null) {
@@ -73,6 +76,7 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
+    @Transactional
     public void deleteCart(Long id) {
         cartRepository.deleteById(id);
     }

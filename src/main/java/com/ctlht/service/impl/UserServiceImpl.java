@@ -10,6 +10,7 @@ import com.ctlht.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -36,6 +37,7 @@ public class UserServiceImpl implements UserService {
     private ModelMapper modelMapper;
 
     @Override
+    @Transactional
     public UserResponse register(UserRequest userRequest) {
         if (userRepository.findByEmail(userRequest.getEmail()) != null) return null; // tồn tại email trong db
         UserEntity userEntity = modelMapper.map(userRequest, UserEntity.class);
@@ -72,6 +74,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public void deleteUsers(long[] ids) {
         for (long id : ids) {
             userRepository.deleteById(id);
@@ -79,6 +82,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public UserResponse updateOrAdd(UserRequest userRequest) {
         UserEntity userEntity = userRepository.save(userMapper.toEntity(userRequest));
         return userMapper.toResponse(userEntity);
