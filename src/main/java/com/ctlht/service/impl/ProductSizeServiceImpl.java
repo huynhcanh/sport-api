@@ -1,6 +1,8 @@
 package com.ctlht.service.impl;
 
 
+import com.ctlht.constant.web.SystemConstant;
+import com.ctlht.entity.ImageEntity;
 import com.ctlht.entity.ProductSizeEntity;
 import com.ctlht.model.mapper.ProductSizeMapper;
 import com.ctlht.model.request.ProductSizeRequest;
@@ -14,6 +16,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -53,6 +56,13 @@ public class ProductSizeServiceImpl implements ProductSizeService {
             productSizeRepository.deleteById(id);
             if (productSizeRepository.findByProductId(productId) == null) {
                 productReponsitory.deleteById(productId);
+                for(ImageEntity item: productSizeEntity.getProduct().getImages()){
+                    File imgProduct = new File(SystemConstant.UPLOAD_IMG_DIR_PRODUCT + File.separator + item.getImage());
+                    if(imgProduct.delete()) {
+                        System.out.println("Delete Success !");
+                    }
+                    else System.out.println("Cannot delete file !");
+                }
             }
         }
     }

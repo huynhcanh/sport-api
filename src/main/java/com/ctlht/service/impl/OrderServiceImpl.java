@@ -68,10 +68,10 @@ public class OrderServiceImpl implements OrderService {
         Float totalMoney = 0F;
         orderRepository.save(orderEntity);
 
-        for(CartEntity cartEntity: cartEntities){
+        for (CartEntity cartEntity : cartEntities) {
             ProductSizeEntity productSizeEntity = productSizeRepository.findById(cartEntity.getProductsize().getId()).get();
             Integer quantityElse = productSizeEntity.getQuantity() - cartEntity.getQuantity();
-            if(quantityElse<0){
+            if (quantityElse < 0) {
                 orderRepository.deleteById(orderEntity.getId());
                 return null;
             }
@@ -85,7 +85,6 @@ public class OrderServiceImpl implements OrderService {
             orderDetailEntity.setQuantity(cartEntity.getQuantity());
             productSizeEntity.setQuantity(productSizeEntity.getQuantity() - cartEntity.getQuantity());
             productSizeRepository.save(productSizeEntity);
-
             orderDetailEntity.setTotalMoney(cartEntity.getTotalMoney());
             totalMoney = totalMoney + cartEntity.getTotalMoney();
             orderDetailRepository.save(orderDetailEntity);

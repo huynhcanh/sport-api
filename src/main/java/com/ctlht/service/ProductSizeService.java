@@ -7,9 +7,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 import java.util.Map;
 
-public interface  ProductSizeService {
+public interface ProductSizeService {
     List<ProductSizeResponse> productsizesByParams(@RequestParam(required = false) Map<String, String> params);
+
     void deleteProductSizes(long[] ids);
+
     ProductSizeResponse insertOrUpdate(ProductSizeRequest productSizeRequest);
 
     long count();

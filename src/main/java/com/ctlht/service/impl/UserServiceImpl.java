@@ -1,5 +1,6 @@
 package com.ctlht.service.impl;
 
+import com.ctlht.constant.web.SystemConstant;
 import com.ctlht.entity.UserEntity;
 import com.ctlht.model.mapper.UserMapper;
 import com.ctlht.model.request.user.UserRequest;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.File;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -77,6 +79,11 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void deleteUsers(long[] ids) {
         for (long id : ids) {
+            File imgUser = new File(SystemConstant.UPLOAD_IMG_DIR_USER + File.separator + userRepository.findById(id).get().getImage());
+            if(imgUser.delete()) {
+                System.out.println("Delete Success !");
+            }
+            else System.out.println("Cannot delete file !");
             userRepository.deleteById(id);
         }
     }
